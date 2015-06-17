@@ -4,4 +4,4 @@ project(DataStructures)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES main.c)
-add_executable(DataStructures ${SOURCE_FILES} queue.h queue.c)
+add_executable(DataStructures ${SOURCE_FILES} queue.h queue.c sort.h sort.c)
