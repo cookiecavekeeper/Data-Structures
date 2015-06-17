@@ -23,7 +23,7 @@ int Quicksort_partition(int array[], int start, int end)
     int pIndex = start;
 
     for (int i = start; i < end; ++i) {
-        if (array[i] > pivot) {
+        if (array[i] <= pivot) {
             swap(array + i, array + pIndex);
             pIndex++;
         }
