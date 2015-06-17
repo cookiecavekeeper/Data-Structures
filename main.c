@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "queue.h"
 #include "sort.h"
+#include "list_sort.h"
 
 int main()
 {
@@ -27,5 +28,23 @@ int main()
         printf("%i ", array[i]);
     }
     printf("\n");
+
+
+    printf("===== Sorting Lists =====\n");
+
+    SortList *list = SortList_create();
+    SortList_append(list, 3);
+    SortList_append(list, 5);
+    SortList_append(list, 2);
+    SortList_append(list, 7);
+    SortList_append(list, 5);
+    SortList_append(list, 1);
+    SortList_append(list, 8);
+    SortList_append(list, 0);
+    SortList_append(list, 9);
+    SortList_append(list, 4);
+    SortList_append(list, 6);
+
+    SortList_print(list);
     return 0;
 }
