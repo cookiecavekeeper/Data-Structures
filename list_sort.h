@@ -22,6 +22,6 @@ void SortList_append(SortList* list, int value);
 
 void SortList_print(SortList* list);
 
-void SortList_sort(int array[], int start, int end);
+void SortList_sort(SortList* list);
 
 #endif //DATASTRUCTURES_LIST_SORT_H

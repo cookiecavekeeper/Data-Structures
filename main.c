@@ -46,5 +46,7 @@ int main()
     SortList_append(list, 6);
 
     SortList_print(list);
+    SortList_sort(list);
+    SortList_print(list);
     return 0;
 }

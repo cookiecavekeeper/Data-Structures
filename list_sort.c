@@ -14,7 +14,8 @@ SortList* SortList_create() {
     return list;
 }
 
-void SortList_append(SortList* list, int value) {
+void SortList_append(SortList* list, int value)
+{
     SortNode *tmp = malloc(sizeof(SortNode));
     tmp->value = value;
     tmp->next = NULL;
@@ -27,7 +28,8 @@ void SortList_append(SortList* list, int value) {
     list->size++;
 }
 
-void SortList_print(SortList* list) {
+void SortList_print(SortList* list)
+{
     SortNode *tmp = list->start;
     printf("Size: %i Content: ", list->size);
     while (tmp != NULL) {
@@ -36,3 +38,14 @@ void SortList_print(SortList* list) {
     }
     printf("\n");
 }
+
+void SortList_sort(SortList* list)
+{
+    SortNode *arrayList[list->size];
+    SortNode *tmp = list->start;
+    int i = 0;
+    while (tmp != NULL) {
+        arrayList[i++] = tmp;
+        tmp = tmp->next;
+    }
+};
