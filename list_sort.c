@@ -40,6 +40,39 @@ void SortList_print(SortList *list)
     printf("\n");
 }
 
+
+void swapList(SortNode **first, SortNode **second) {
+    SortNode *tmp = *first;
+    *first = *second;
+    *second = tmp;
+}
+
+int SortList_partition(SortNode *array[], int start, int end)
+{
+    SortNode *pivot = array[end];
+    int pIndex = start;
+
+    for (int i = start; i < end; ++i) {
+        if (array[i]->value <= pivot->value) {
+            swapList(array + i, array + pIndex);
+            pIndex++;
+        }
+    }
+
+    swapList(array + pIndex, array + end);
+    return pIndex;
+}
+
+
+void SortList_sort_actual(SortNode *array[], int start, int end)
+{
+    if (start < end) {
+        int pIndex = SortList_partition(array, start, end);
+        SortList_sort_actual(array, start, pIndex - 1);
+        SortList_sort_actual(array, pIndex + 1, end);
+    }
+}
+
 void SortList_sort(SortList *list)
 {
     SortNode *arrayList[list->size];
@@ -48,5 +81,15 @@ void SortList_sort(SortList *list)
     while (tmp != NULL) {
         arrayList[i++] = tmp;
         tmp = tmp->next;
+    }
+    SortList_sort_actual(arrayList, 0, i);
+
+
+    tmp = list->start = arrayList[0];
+    list->end = arrayList[i - 1];
+
+    for (int j = 1; j < i; ++j) {
+        tmp->next = arrayList[j];
+        tmp = arrayList[j];
     }
 };
