@@ -82,7 +82,7 @@ void SortList_sort(SortList *list)
         arrayList[i++] = tmp;
         tmp = tmp->next;
     }
-    SortList_sort_actual(arrayList, 0, i);
+    SortList_sort_actual(arrayList, 0, i - 1);
 
 
     tmp = list->start = arrayList[0];
