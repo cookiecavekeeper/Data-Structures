@@ -89,6 +89,7 @@ void SortList_sort(SortList *list)
     list->end = arrayList[i - 1];
 
     for (int j = 1; j < i; ++j) {
+        arrayList[j]->next = NULL;
         tmp->next = arrayList[j];
         tmp = arrayList[j];
     }
