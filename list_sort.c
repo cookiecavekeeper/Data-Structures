@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include "list_sort.h"
 
-SortList* SortList_create() {
+SortList *SortList_create()
+{
     SortList *list = malloc(sizeof(SortList));
     list->size = 0;
     list->start = NULL;
@@ -14,7 +15,7 @@ SortList* SortList_create() {
     return list;
 }
 
-void SortList_append(SortList* list, int value)
+void SortList_append(SortList *list, int value)
 {
     SortNode *tmp = malloc(sizeof(SortNode));
     tmp->value = value;
@@ -28,7 +29,7 @@ void SortList_append(SortList* list, int value)
     list->size++;
 }
 
-void SortList_print(SortList* list)
+void SortList_print(SortList *list)
 {
     SortNode *tmp = list->start;
     printf("Size: %i Content: ", list->size);
@@ -39,7 +40,7 @@ void SortList_print(SortList* list)
     printf("\n");
 }
 
-void SortList_sort(SortList* list)
+void SortList_sort(SortList *list)
 {
     SortNode *arrayList[list->size];
     SortNode *tmp = list->start;

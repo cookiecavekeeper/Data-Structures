@@ -16,12 +16,12 @@ typedef struct SortList {
     int size;
 } SortList;
 
-SortList* SortList_create();
+SortList *SortList_create();
 
-void SortList_append(SortList* list, int value);
+void SortList_append(SortList *list, int value);
 
-void SortList_print(SortList* list);
+void SortList_print(SortList *list);
 
-void SortList_sort(SortList* list);
+void SortList_sort(SortList *list);
 
 #endif //DATASTRUCTURES_LIST_SORT_H

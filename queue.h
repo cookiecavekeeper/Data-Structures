@@ -7,24 +7,24 @@
 
 typedef struct Node {
     int data;
-    struct Node* next;
+    struct Node *next;
 } Node;
 
 typedef struct Queue {
-    Node* front;
-    Node* tail;
+    Node *front;
+    Node *tail;
 } Queue;
 
-Queue* Queue_create();
+Queue *Queue_create();
 
-void Queue_destroy(Queue* queue);
+void Queue_destroy(Queue *queue);
 
-void Queue_enqueue(Queue* queue, int value);
+void Queue_enqueue(Queue *queue, int value);
 
-void Queue_dequeue(Queue* queue);
+void Queue_dequeue(Queue *queue);
 
-int Queue_front(Queue* queue);
+int Queue_front(Queue *queue);
 
-void Queue_print(Queue* queue);
+void Queue_print(Queue *queue);
 
 #endif //DATASTRUCTURES_QUEUE_H

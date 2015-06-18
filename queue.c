@@ -7,22 +7,25 @@
 
 #include "queue.h"
 
-Queue* Queue_create() {
-    Queue* queue = malloc(sizeof(Queue));
+Queue *Queue_create()
+{
+    Queue *queue = malloc(sizeof(Queue));
     queue->front = NULL;
     queue->tail = NULL;
     return queue;
 }
 
-void Queue_destroy(Queue* queue) {
+void Queue_destroy(Queue *queue)
+{
     while (queue->front != NULL && queue->tail != NULL) {
         Queue_dequeue(queue);
     }
     free(queue);
 }
 
-void Queue_enqueue(Queue* queue, int value) {
-    Node* tmp = malloc(sizeof(Node));
+void Queue_enqueue(Queue *queue, int value)
+{
+    Node *tmp = malloc(sizeof(Node));
     tmp->data = value;
     tmp->next = NULL;
 
@@ -34,13 +37,14 @@ void Queue_enqueue(Queue* queue, int value) {
     }
 }
 
-void Queue_dequeue(Queue* queue) {
+void Queue_dequeue(Queue *queue)
+{
     if (queue->front == NULL && queue->tail == NULL) {
         printf("Queue allready emty!\n");
         return;
     }
 
-    Node* tmp = queue->front;
+    Node *tmp = queue->front;
 
     if (queue->front == queue->tail) {
         queue->front = queue->tail = NULL;
@@ -50,16 +54,18 @@ void Queue_dequeue(Queue* queue) {
     free(tmp);
 }
 
-int Queue_front(Queue *queue) {
-    if(queue->front == NULL) {
+int Queue_front(Queue *queue)
+{
+    if (queue->front == NULL) {
         printf("Queue is empty\n");
         return 0;
     }
     return queue->front->data;
 }
 
-void Queue_print(Queue* queue) {
-    Node* tmp = queue->front;
+void Queue_print(Queue *queue)
+{
+    Node *tmp = queue->front;
     printf("Values: ");
     while (tmp != NULL) {
         printf("%i ", tmp->data);
