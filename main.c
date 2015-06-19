@@ -2,6 +2,7 @@
 #include "queue.h"
 #include "sort.h"
 #include "list_sort.h"
+#include "hash_table.h"
 
 int main()
 {
@@ -24,7 +25,8 @@ int main()
     int lenght = sizeof(array) / sizeof(array[0]);
     Quicksort_sort(array, 0, lenght - 1);
     printf("Values: ");
-    for (int i = 0; i < lenght; ++i) {
+    int i;
+    for (i = 0; i < lenght; ++i) {
         printf("%i ", array[i]);
     }
     printf("\n");
@@ -48,5 +50,19 @@ int main()
     SortList_print(list);
     SortList_sort(list);
     SortList_print(list);
+
+    printf("===== HashTable =====\n");
+
+    HashTable *table = HashTable_create(100);
+    HashTable_set(table, "test", "Paul der Gaul!");
+    HashTable_set(table, "tset", "Paul der Gaul 2!");
+    char *result = HashTable_get(table, "test");
+    char *result2 = HashTable_get(table, "tset");
+    HashTable_set(table, "tset", "Paul der Gaul 3!");
+    HashTable_set(table, "bullshit", "Paul der Gaul bull!");
+    char *result3 = HashTable_get(table, "tset");
+    char *result4 = HashTable_get(table, "bullshit");
+    printf("Result: %s %s\n", result, result2);
+    printf("Result: %s %s\n", result3, result4);
     return 0;
 }

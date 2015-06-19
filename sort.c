@@ -21,8 +21,8 @@ int Quicksort_partition(int array[], int start, int end)
 {
     int pivot = array[end];
     int pIndex = start;
-
-    for (int i = start; i < end; ++i) {
+    int i;
+    for (i = start; i < end; ++i) {
         if (array[i] <= pivot) {
             swap(array + i, array + pIndex);
             pIndex++;

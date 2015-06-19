@@ -52,7 +52,8 @@ int SortList_partition(SortNode *array[], int start, int end)
     SortNode *pivot = array[end];
     int pIndex = start;
 
-    for (int i = start; i < end; ++i) {
+    int i;
+    for (i = start; i < end; ++i) {
         if (array[i]->value <= pivot->value) {
             swapList(array + i, array + pIndex);
             pIndex++;
@@ -88,7 +89,8 @@ void SortList_sort(SortList *list)
     tmp = list->start = arrayList[0];
     list->end = arrayList[i - 1];
 
-    for (int j = 1; j < i; ++j) {
+    int j;
+    for (j = 1; j < i; ++j) {
         arrayList[j]->next = NULL;
         tmp->next = arrayList[j];
         tmp = arrayList[j];
