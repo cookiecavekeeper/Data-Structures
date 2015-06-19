@@ -12,8 +12,8 @@ HashTable *HashTable_create(int size)
     HashTable *table = malloc(sizeof(HashTable));
     table->size = size;
     table->node_list = malloc(size * sizeof(HashNode));
-
-    for (int i = 0; i < size; ++i) {
+    int i;
+    for (i = 0; i < size; ++i) {
         table->node_list[i] = NULL;
     }
 
@@ -24,40 +24,41 @@ int HashTable_hash(char *key, int size)
 {
     int total = 0;
     size_t length = strlen(key);
-    for (int i = 0; i < length; ++i) {
+    int i;
+    for (i = 0; i < length; ++i) {
         total += key[i];
     }
     return total % size;
 }
 
-void HashTable_createNode(HashNode *target, const char *key, const char *value)
+HashNode *HashTable_createNode(const char *key, const char *value)
 {
-    target = malloc(sizeof(HashNode));
+    HashNode *target = malloc(sizeof(HashNode));
     target->key = strdup(key);
     target->value = strdup(value);
     target->next = NULL;
+    return target;
 }
 
 void HashTable_set(HashTable *table, char *key, char *value)
 {
     int hash = HashTable_hash(key, table->size);
-    HashNode *target = table->node_list[hash];
-    if (target == NULL) {
-        HashTable_createNode(target, key, value);
+    if (table->node_list[hash] == NULL) {
+        table->node_list[hash] = HashTable_createNode(key, value);
         return;
     }
 
-    HashNode *tmp = target;
-    while (tmp->next != NULL) {
+    HashNode *tmp = table->node_list[hash];
+    do {
         if(strcmp(tmp->key, key) == 0) {
             free(tmp->value);
             tmp->value = strdup(value);
             return;
         }
 
-        tmp = tmp->next;
-    }
-    HashTable_createNode(tmp->next, key, value);
+    } while (tmp->next != NULL && (tmp = tmp->next));
+
+    tmp->next = HashTable_createNode(key, value);
 }
 
 char *HashTable_get(HashTable *table, char *key)
@@ -69,13 +70,12 @@ char *HashTable_get(HashTable *table, char *key)
         return NULL;
     }
 
-    while (target->next != NULL) {
+    do {
         if(strcmp(target->key, key) == 0) {
             return  strdup(target->value);
         }
 
-        target = target->next;
-    }
+    } while ((target->next != NULL && (target = target->next)));
     printf("Key not found");
     return NULL;
 }
